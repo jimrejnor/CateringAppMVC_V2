@@ -1,0 +1,33 @@
+﻿@model CateringApplication.Core.Models.MenuListViewModel
+
+@{
+    ViewBag.Title = "Menus";
+}
+
+<h2>Currently available menus in all Restaurants</h2>
+
+<p>
+    @Html.ActionLink("Create New Menu", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+           
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var menu in Model.Menus) {
+    <tr>
+        <td>
+            @Html.DisplayFor(menuItem => menu.Name)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = menu.ID }) |
+            @Html.ActionLink("Delete", "Delete", new {  id = menu.ID  })
+        </td>
+    </tr>
+}
+    </table>

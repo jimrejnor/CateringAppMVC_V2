@@ -1,0 +1,48 @@
+﻿@model CateringApplication.Core.Models.FoodListViewModel
+
+@{
+    ViewBag.Title = @Model.RestaurantName;
+}
+
+<h2>@Model.RestaurantName</h2>
+
+<p>
+    @Html.ActionLink("Create New Food", "Create", new { id = ViewBag.RestaurantID })
+</p>
+
+<p>
+    @Html.ActionLink("Add new menu", "Index", "Menu")
+</p>
+
+
+@foreach (var menu in Model.Menus)
+{
+<h3>@menu.Name</h3>
+<table>
+<tr>
+    <th>
+        Food Name
+    </th>
+    <th>
+        Price
+    </th>
+    <th></th>
+</tr>
+
+    @foreach (var food in Model.Foods.Where(f => f.Menu.Name == @menu.Name))
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => food.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => food.Price)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = food.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = food.ID })
+            </td>
+        </tr>
+    }
+    </table>
+}

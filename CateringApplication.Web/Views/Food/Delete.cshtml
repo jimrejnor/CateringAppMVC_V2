@@ -1,0 +1,43 @@
+﻿@model CateringApplication.Core.Models.FoodViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Food</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Menu.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Menu.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.RestaurantID)
+    
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "View", new { id = @Model.RestaurantID })
+    </p>
+}

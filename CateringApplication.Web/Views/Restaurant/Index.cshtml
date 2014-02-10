@@ -1,0 +1,44 @@
+﻿@model CateringApplication.Core.Models.RestaurantListViewModel
+
+@{
+    @Model.TownName;
+}
+
+<h2>@Model.TownName</h2>
+
+<p>
+@*    @Html.ActionLink("Create New", "Create", new { townName = ViewBag.CurrentTown })*@
+</p>
+<table>
+    <tr>
+        <th>
+@*            @Html.DisplayNameFor(model => model.Name)*@
+        </th>
+        <th>
+@*            @Html.DisplayNameFor(model => model.Address)*@
+        </th>
+        <th>
+@*            @Html.DisplayNameFor(model => model.PhoneNumber)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var restaurant in Model.Restaurants) {
+    <tr>
+        <td>
+            @Html.ActionLink(restaurant.Name, "Index", "Food", new { id = restaurant.ID }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.PhoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = restaurant.ID }) 
+            @Html.ActionLink("Delete", "Delete", new { id = restaurant.ID })
+        </td>
+    </tr>
+}
+
+</table>

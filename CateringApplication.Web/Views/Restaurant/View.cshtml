@@ -1,0 +1,42 @@
+﻿@model CateringApplication.Core.Models.RestaurantListViewModel
+
+@{
+    ViewBag.Title = @Model.TownName;
+}
+
+<h2>@Model.TownName</h2>
+
+<p>
+    @Html.ActionLink("Create New Restaurant", "Create", new { id = ViewBag.TownID })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.ActionLink("Restaurant", "View", new { id = ViewBag.TownID, sortOrder = ViewBag.SortNameParam })
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var restaurant in Model.Restaurants) {
+    <tr>
+        <td>
+            @Html.ActionLink(restaurant.Name, "View", "Food", new { id = restaurant.ID }, null)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.PhoneNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = restaurant.ID }) 
+            @Html.ActionLink("Delete", "Delete", new { id = restaurant.ID })
+        </td>
+    </tr>
+}
+
+</table>
